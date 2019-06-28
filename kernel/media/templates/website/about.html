@@ -1,0 +1,46 @@
+{% extends "shared/site.html" %} 
+{% block title %} Home {% endblock %} 
+{% load i18n %}
+{% load static %}
+
+
+{% block body %}
+{% get_current_language as LANGUAGE_CODE %}
+<main>
+    <section id="about">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if LANGUAGE_CODE == 'sk' %}
+                        {% for scms in slovaki_website_content %}
+                            <div class="col-md-2 col-md-push-5 col-md-pull-5">
+                                <img class="mb-20" src="{% static 'site/images/logo.png' %}"/>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p style="font-size: 20px;">{{ scms.about }}</p>
+                        {% endfor %}
+                    {% else %}
+                        {% for cms in websitecontent_list %}
+                            <div class="col-md-2 col-md-push-5 col-md-pull-5">
+                                <img class="mb-20" src="{% static 'site/images/logo.png' %}"/>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p style="font-size: 20px;">{{ cms.about }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <article id="contact-us">
+        <div class="container">
+            <div class="text-center">
+                <h3>Contact</h3>
+                <p style="font-family: 'Source Sans Pro', sans-serif;">we always ready for answer to your powerful questions.</p>
+                <p style="font-family: 'Source Sans Pro', sans-serif;">we always ready for answer to your powerful questions. lorem ipsum dolor</p>
+                <a class="btn btn-primary" href="{% url 'website:contact' %}">Contact</a>
+            </div>
+        </div>
+    </article>
+</main>
+{% endblock %}

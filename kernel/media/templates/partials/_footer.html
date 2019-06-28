@@ -1,0 +1,83 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<footer>
+        <div class="container">
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="row">
+                    <h5>site map</h5>
+                    <ul class="unstyled-list">
+                        <li>
+                            <a href="{% url 'website:home' %}">{% trans 'home' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'website:about' %}">{% trans 'about' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'website:contact' %}">{% trans 'contact' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'website:news' %}">{% trans 'news' %}</a>
+                        </li>
+                        <li>
+                            <a href="#">{% trans 'awards' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'website:products' %}">{% trans 'products' %}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="row">
+                    <h5>awards</h5>
+                    <ul class="unstyled-list">
+                        {% if LANGUAGE_CODE == 'sk' %}
+                            {% for award in slovaki_awards %}
+                                <li>
+                                    <a href="#">international trophy</a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            {% for award in awards %}
+                                <li>
+                                    <a href="#">international trophy</a> 
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="row">
+                    <h5>Products</h5>
+                    <ul class="unstyled-list">
+                        {% if LANGUAGE_CODE == 'sk' %}
+                            {% for product in slovaki_products %}
+                                <li><a href="{%  url 'website:product', sku = product.sku id = product.id) }}">{{ product.title }}</a></li>
+                            {% endfor %}
+                        {% else %}
+                            {% for product in products %}
+                                <li><a href="{%  url 'website:product', sku = product.sku id = product.id) }}">{{ product.title }}</a></li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="row">
+                    <h5>blog</h5>
+                    <ul class="unstyled-list">
+                        {% if LANGUAGE_CODE == 'sk' %}
+                            {% for post in slovaki_news %}
+                                <li><a href="{%  url 'website:post', sku = post.sku id = product.id) }}">{{ post.title }}</a></li>
+                            {% endfor %}
+                        {% else %}
+                            {% for post in news %}
+                                <li><a href="{%  url 'website:post', sku = post.sku id = product.id) }}">{{ post.title }}</a></li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>

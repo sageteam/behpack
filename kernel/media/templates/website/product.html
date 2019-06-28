@@ -1,0 +1,76 @@
+{% extends "shared/site.html" %} 
+{% block title %} Home {% endblock %} 
+{% load i18n %}
+{% load static %}
+
+
+{% block body %}
+{% get_current_language as LANGUAGE_CODE %}
+{% if product %}
+<main>
+    <section id="product">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    {% for photo in product.photos.all %}
+                        <img class="img-responsive" src="{{ photo.pic.url }}" alt="" style="width: 500px; height: 400px;">
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <h2>Product Description</h2>
+                    <div class="col-md-10">
+                        <p class="text-justify">
+                            {{ product.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>{{ product.title }}</h2>
+                    <div class="col-md-offset-1 col-md-3">
+                        <div class="small-square">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="small-square">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Advantages</h2>
+                    <ul class="list-unstyled">
+                        {% for feature in product.tags.all %}
+                            <li>
+                                <i class="fa fa-check"></i> {{ feature.tag_name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <video width="500" height="500" controls>
+                    {% for video in product.movies.all %}
+                        <source src={{ video.movie.url }} type="video/mp4">
+                    {% endfor %}
+                    <p>Please use chrome browser for watch that video.</p>
+                </video>
+            </div>
+        </div>
+    </section>
+</main>
+<article id="relatedProducts">
+    <div class="container">
+        <h3 class="text-center">related products</h3>
+        <div class="row">
+            <div class="col-md-3">
+                
+            </div>
+        </div>
+    </div>
+</article>
+</main>
+{% endif %}
+{% endblock %}

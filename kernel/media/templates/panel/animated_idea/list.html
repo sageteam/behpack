@@ -1,0 +1,98 @@
+{% extends 'shared/panel.html' %} 
+{% load widget_tweaks %}
+{% load static %}
+{% block body %}
+
+<div class="panel">
+    <div class="panel-header bg-primary">
+        <h3>مدیریت محصولات</h3>
+    </div>
+    <div class="panel-header">
+        <h3>
+            <i class="icon-bulb"></i>
+            <p>در این قسمت کلیه محصولات شما لیست می شود.</p>
+        </h3>
+    </div>
+    <div class="panel-content">
+        {% if project_list %}
+            <table class="table dataTable table-hover table-bordered">
+                <thead>
+                    <tr></tr>
+                    <th style="padding-right: 10px; background-color:#2980b9; color:#efefef;" scope="col">#</th>
+                    <th style="padding-right: 10px; background-color:#2980b9; color:#efefef;" scope="col">کد پیگیری</th>
+                    <th style="padding-right: 10px; background-color:#2980b9; color:#efefef;" scope="col">عنوان پروژه</th>
+                    <th style="padding-right: 10px; background-color:#2980b9; color:#efefef;" scope="col">وضعیت انجام پروژه</th>
+                    <th style="padding-right: 10px; background-color:#2980b9; color:#efefef;" scope="col">عملیات</th>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    {% for project in project_list %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ project.sku }}</td>
+                            <td>{{ project.title }}</td>
+                            <td>
+                                {% if project.status == '0' %}
+                                    <a href="#" style="cursor: no-drop" class="btn btn-info btn-block">منتظر بمانید</a>
+                                {% elif project.status == '1' %}
+                                    <a href="#" style="cursor: no-drop" class="btn btn-default btn-block" disabled>منتظر بمانید</a>
+                                {% elif project.status == '2' %}
+                                    <a href="#" style="cursor: no-drop" class="btn btn-success btn-block">در حال ساخت</a>
+                                {% else %}
+                                <a href="#" style="cursor: no-drop" class="btn btn-danger btn-block">کار متوقف شده است</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a data-toggle="collapse" data-target=".order{{ forloop.counter }}" class="btn btn-sm btn-dark btn-block">بیشتر</a>
+                                <a href="{% url 'panel:update_project' pk=project.id %}" class="btn btn-sm btn-warning btn-block">ویرایش</a>
+                                <a type="button" data-toggle="modal" data-target="#mymodal" class="btn btn-sm btn-danger btn-block">حذف</a>
+                            </td>
+                        </tr>
+                        <tr class="collapse order{{ forloop.counter }}">
+                            <td colspan="4"> {{ project.summary }} </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        {% endif %}
+        {% include 'partials/site/_pagination.html' %}
+    </div>
+    <div class="panel-footer">
+        <a href="{% url 'panel:register_project' %}" class="btn btn-success btn-lg">ثبت پروژه جدید</a>
+    </div>
+</div>
+
+
+
+<!-- BEGIN MODAL -->
+<div id='mymodal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <form method="POST">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2 class="modal-title" id="gridSystemModalLabel">حذف پروژه</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>جهت حذف این پروژه با سازمان تماس بگیرید تا سوپروایزر شما این پروژه را لغو نماید.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </form>
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- END   MODAL -->
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "shared/site.html" %} 
+{% block title %} Home {% endblock %} 
+{% load i18n %}
+
+{% block body %}
+<main>
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="/home/contact" method="POST" class="form-inline text-center">
+                        <input id="csrf_token" name="csrf_token" type="hidden" value="IjI5OWQ1ZGUyODM4ODBiOGZhM2MyMWViMzBjMTg1OGRmNDUzZTNiOTYi.DVDeig.9NjooWcN4vcKwjgSOhB_ZJisgxQ">
+                        <div class="row">
+                            <div class="form-group text-right input-group-lg">
+                                <input autofocus="autofocus" class="form-control" id="name" name="name" placeholder="Name" required="required" type="text" value="">
+                                <input class="form-control" id="company" name="company" placeholder="Company name" required="required" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group text-right input-group-lg">
+                                    <input autofocus="autofocus" class="form-control" id="email" name="email" placeholder="Email" required="required" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <textarea class="form-control" cols="69" id="message" name="message" placeholder="Type a message" required="required" rows="8"></textarea>
+                            </div>
+                        </div>
+                        <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Send Message">
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="line-horizontal">
+                        <ul class="list-unstyled mt-60 ml-20">
+                            <li><p><i class="fa fa-phone"></i> {% trans 'Phone number' %}: 0098 1152332683</p></li>
+                            <li><p><i class="fa fa-phone"></i> {% trans 'phone number' %}: 0098 1152332684</p></li>
+                            <li><p><i class="fa fa-support"></i> {% trans 'Technical support' %}: 0098 9121025215</p></li>
+                            <li><p><i class="fa fa-envelope-square"></i> {% trans 'Fax number' %}: 0098 1152352211</p></li>
+                            <li><p><i class="fa fa-envelope"></i> {% trans 'Mail' %}: info@behpack.com</p></li>
+                            <li><p style="color: #f1c40f;"><i class="fa fa-globe"></i> {% trans 'International inquery' %}: 0098 9117907180</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <article id="relatedProducts">
+        <div class="container">
+            <h3 class="text-center">related products</h3>
+            <div class="row">
+            </div>
+        </div>
+    </article>
+</main>
+{% endblock %}

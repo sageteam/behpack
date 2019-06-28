@@ -1,0 +1,74 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Behpack | {{ title }} </title>
+    <!-- import meta data partial view -->
+
+    <link rel="shortcut icon" href="{% static 'site/images/favicon.png' %}" type="image/png" />
+    <!-- Plugins -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'site/plugins/bootstrap/css/bootstrap.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'vendor/jquery-nice-select-1.1.0/css/nice-select.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/plugins/owl.carousel/owl.carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/plugins/hover.css/css/hover-min.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/plugins/animate-css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/plugins/behpack/main.css' %}" />
+    {% include 'partials/_seo.html' %}
+</head>
+
+<body>
+    {% include 'partials/_banner.html' %}
+    {% include 'partials/_navigation.html' %}
+    <!-- import breadcrumb partial view -->
+    <main>
+        {% block body %} {% endblock %}
+    </main>
+    <!-- import partial partial view -->
+   
+    {% include 'partials/_footer.html' %}
+    
+    <div class="privacyPolicy">
+        <h6 class="text-center">SAGE Team Company Support. &copy; 2017 Privacy Policy</h6>
+        <h6 class="text-center font-tangerine">
+            <a href="http://sepehrakbarzadeh.com" class="hvr-float-shadow">Sepehr Akbarzadeh</a>
+        </h6>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{% static 'site/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'site/plugins/owl.carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'site/plugins/cycle2/cycle2.js' %}"></script>
+    <script src="{% static 'vendor/jquery-nice-select-1.1.0/js/jquery.js' %}"></script>
+    <script src="{% static 'vendor/jquery-nice-select-1.1.0/js/jquery.nice-select.min.js' %}"></script>
+    <script type="text/javascript">
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "42e89b01-d0df-495d-b901-1f180729341b";
+        (function () {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('select').niceSelect();
+        });
+    </script>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXCFRV8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>

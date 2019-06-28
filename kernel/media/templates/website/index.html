@@ -1,0 +1,201 @@
+<!-- app/templates/home/index.html -->
+
+{% extends "shared/site.html" %} 
+{% load static %}
+{% load i18n %}
+{% block title %} Home {% endblock %} 
+{% block body %}
+{% get_current_language as LANGUAGE_CODE %}
+<main>
+    <article>
+        <section id="welcome" class="text-center">
+            <div class="container">
+                <div class="col-md-12 text-center">
+                    {% if LANGUAGE_CODE == 'sk' %}
+                        <h2 class="text-center">{% trans 'Welcome' %}</h2>
+                            {% for scms in slovaki_website_content %}
+                                <h3>{{ scms.summary_feature }}</h3>
+                                <ul class="list-unstyled list-inline">
+                                    <li>
+                                        <div class="hexagonal-large">
+                                            <img src="{% static 'site/images/icon-box.png' %}" alt="High Performance" height="70px" />
+                                            <h4>{{ scms.quality1 }}</h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled list-inline">
+                                    <li>
+                                        <div class="hexagonal-large">
+                                            <span class="icon-hexagonal">
+                                                <img src="{% static 'site/images/icon-chart.png' %}" alt="High Pack Quality" />
+                                            </span>
+                                            <h4>{{ scms.quality2 }}</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="hexagonal-large">
+                                            <span class="icon-hexagonal">
+                                                <img src="{% static 'site/images/icon-barcode.png' %}" alt="Younique Development" />
+                                            </span>
+                                            <h4>{{ scms.quality3 }}</h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 text-center">
+                                <p class="lead">{{ scms.description_feature }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    
+                    {% else %}
+                        <h2 class="text-center">{% trans 'Welcome' %}</h2>
+                        {% for cms in websitecontent_list %}
+                            <h3>{{ cms.summary_feature }}</h3>
+                            <ul class="list-unstyled list-inline">
+                                <li>
+                                    <div class="hexagonal-large">
+                                        <img src="{% static 'site/images/icon-box.png' %}" alt="High Performance" height="70px" />
+                                        <h4>{{ cms.quality1 }}</h4>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled list-inline">
+                                <li>
+                                    <div class="hexagonal-large">
+                                        <span class="icon-hexagonal">
+                                            <img src="{% static 'site/images/icon-chart.png' %}" alt="High Pack Quality" />
+                                        </span>
+                                        <h4>{{ cms.quality2 }}</h4>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="hexagonal-large">
+                                        <span class="icon-hexagonal">
+                                            <img src="{% static 'site/images/icon-barcode.png' %}" alt="Younique Development" />
+                                        </span>
+                                        <h4>{{ cms.quality3 }}</h4>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 text-center">
+                            <p class="lead">{{ cms.description_feature }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                {% endif %}
+        </section>
+        <section id="supports">
+            <div class="container-fluid text-justify">
+                <div class="col-md-12">
+                    <h3>{% trans 'Our History' %}</h3>
+                    {% if LANGUAGE_CODE == 'sk' %}
+                        {% for cms in slovaki_website_content %}
+                            <p>{{ cms.about }}</p>
+                        {% endfor %}
+                    {% else %}
+                        {% for cms in websitecontent_list %}
+                            <p>{{ cms.about }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    <a href="{{ url_for('home.about' %}">{% trans 'read more about us...' %}</a>
+                </div>
+            </div>
+        </section>
+        <section id="products">
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="product-text">
+                        <h3 class="bold">{% trans 'Perfect' %}</h3>
+                        <h4 class="bold">{% trans 'Experience' %} &
+                            <br /> {% trans 'High Quality Products' %}</h4>
+                    </div>
+                    <div class="text-center">
+                        <a class="btn btn-primary" href="">{% trans 'Products' %}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services">
+            <div class="container">
+                <div class="row">
+                    {% if LANGUAGE_CODE == 'sk' %}
+                        {% for cms in slovaki_website_content %}
+                            <div class="col-md-8 feature bgFirst">
+                                <h2 class="text-center font-impact">{{ cms.title1 }}</h2>
+                            </div>
+                            <div class="col-md-4 feature-text">
+                                <p>{{ cms.description1 }}</p>
+                            </div>
+                        </div>
+                        <div class="row feature-fix">
+                            <div class="col-md-4 feature-text">
+                                <p>{{ cms.description2 }}</p>
+                            </div>
+                            <div class="col-md-8 feature bgSecond">
+                                <h2 class="text-center font-impact"> {{ cms.title2 }}</h2>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for cms in websitecontent_list %}
+                            <div class="col-md-8 feature bgFirst">
+                                <h2 class="text-center font-impact">{{ cms.title1 }}</h2>
+                            </div>
+                            <div class="col-md-4 feature-text">
+                                <p>{{ cms.description1 }}</p>
+                            </div>
+                        </div>
+                        <div class="row feature-fix">
+                            <div class="col-md-4 feature-text">
+                                <p>{{ cms.description2 }}</p>
+                            </div>
+                            <div class="col-md-8 feature bgSecond">
+                                <h2 class="text-center font-impact"> {{ cms.title2 }}</h2>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+            </div>
+        </section>
+    </article>
+    <article id="news">
+        <div class="container-fluid">
+            <div class="col-md-4 font-imprint title">
+                <h3 class="large">{% trans 'News' %} </br> &amp; {% trans 'Events' %}</h3>
+                <h6>
+                    <a class="no-style-link hvr-grow-rotate font-imprint medium" href="#">{% trans 'View Archieve' %}</a>
+                </h6>
+            </div>
+            <div class="font-imprint">
+                {% for post in news %}
+                    {% if loop.index <= 2 %}
+                    <div class="col-md-4">
+                        <div class="hexagonal-small">
+                            <div class="icon-hexagonal">
+                                <h5 class="news-number font-imprint large">{{ post.created_at.strftime('%d' %}</h5>
+                                <h6 class="font-imprint small">{{ post.created_at.strftime('%B' %}</h6>
+                            </div>
+                        </div>
+                        <p>{{ post.summary }}</p>
+                        <a class="btn btn-primary" href="{{ url_for('home.single_news', sku = post.sku %}">{% trans 'more' %}</a>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </article>
+    <article>
+        <div class="container-fluid">
+            <div class="owl-carousel"></div>
+        </div>
+    </article>
+</main>
+
+{% endblock %}

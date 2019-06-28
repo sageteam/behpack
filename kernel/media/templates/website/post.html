@@ -1,0 +1,60 @@
+{% extends "shared/site.html" %} 
+{% block title %} Home {% endblock %} 
+{% load i18n %}
+{% load static %}
+
+
+{% block body %}
+{% get_current_language as LANGUAGE_CODE %}
+{% if LANGUAGE_CODE == 'sk' %}
+<main style="margin-top:30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>{{ post.name }}</h1>
+                        {% for photo in post.photos.all %}
+                            <img class="img-responsive" src="{{ photo.pic.url }}" alt="">
+                        {% endfor %}
+                        <br />
+                        <p class="text-justify">
+                            {{ post.description }}
+                        </p>
+                        <h4><b>Tags:</b></h4>
+                        {% for tag in post.tags.all %}
+                            <li>{{ tag.tag_name }}</li>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% else %}
+<main style="margin-top:30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>{{ post.name }}</h1>
+                        {% for photo in post.photos.all %}
+                            <img class="img-responsive" src="{{ photo.pic.url }}" alt="">
+                        {% endfor %}
+                        <br />
+                        <p class="text-justify">
+                            {{ post.description }}
+                        </p>
+                        <h4><b>Tags:</b></h4>
+                        {% for tag in post.tags.all %}
+                            <li>{{ tag.tag_name }}</li>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endif %}
+    {% endblock %}

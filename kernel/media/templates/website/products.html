@@ -1,0 +1,58 @@
+{% extends "shared/site.html" %} 
+
+{% load i18n %}
+{% load static %}
+
+{% block body %}
+{% get_current_language as LANGUAGE_CODE %}
+{% if LANGUAGE_CODE == 'sk' %}
+<main>
+    <section style="margin: 40px;">
+        <div class="container">
+            <div class="row">
+                {% for product in slovaki_products %}
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        {% for photo in product.photos.all %}
+                            <img class="img-responsive" src="{{ photo.pic.url }}" alt="" style="width:50%;">
+                        {% endfor %}
+                        <div class="caption">
+                            <h3>{{ product.title }}</h3>
+                            <p>{{ product.summary }}</p>
+                            <a href="{% url 'website:slovakiproduct' product.sku product.id %}" class="btn btn-info" role="button">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+
+{% else %}
+
+<main>
+    <section style="margin: 40px;">
+        <div class="container">
+            <div class="row">
+                {% for product in product_list %}
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        {% for photo in product.photos.all %}
+                            <img class="img-responsive" src="{{ photo.pic.url }}" alt="">
+                        {% endfor %}
+                        <div class="caption">
+                            <h3>{{ product.title }}</h3>
+                            <p>{{ product.summary }}</p>
+                            <a href="{% url 'website:product' product.sku product.id %}" class="btn btn-info" role="button">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endif %}
+
+{% endblock %}

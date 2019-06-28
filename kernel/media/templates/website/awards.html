@@ -1,0 +1,60 @@
+{% extends "shared/site.html" %} 
+{% block title %} Home {% endblock %} 
+{% load i18n %}
+{% load static %}
+
+
+{% block body %}
+{% get_current_language as LANGUAGE_CODE %}
+<main class="p60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="fa fa-award"></i>{% trans 'Company Awards' %}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-4">
+                            <div class="cycle-slideshow" data-cycle-fx=scrollHorz data-cycle-timeout=2000 data-cycle-pager=".cycle-pager" data-cycle-slides=".slide">
+                                {% if LANGUAGE_CODE == 'sk' %}
+                                    {% for award in slovaki_awards %}
+                                        <img class="slide" src="{{ award.pic.url }}" class="img-responsive"/>    
+                                    {% endfor %}
+                                {% else %}
+                                    {% for award in awards %}
+                                        <img class="slide" src="{{ award.pic.url }}" class="img-responsive"/>    
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{% trans "BehPack's International Awards and Prizes" %}</p>
+                            <div class="cycle-slideshow" data-cycle-fx="fade" data-cycle-timeout=2000 data-cycle-slides=".text-slide">
+                                {% if LANGUAGE_CODE == 'sk' %}
+                                    {% for award in slovaki_awards %}
+                                    <div class="text-slide">
+                                        <ul>
+                                            <li>{% trans 'name' %}: {{ award.name }}</li>
+                                            <li>{% trans 'date' %}: {{ award.submit_date|date:"Y-m-d" }}</li>
+                                        </ul>
+                                    </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for award in awards %}
+                                    <div class="text-slide">
+                                        <ul>
+                                            <li>{% trans 'name' %}: {{ award.name }}</li>
+                                            <li>{% trans 'date' %}: {{ award.submit_date|date:"Y-m-d" }}</li>
+                                        </ul>
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+{% endblock %}
